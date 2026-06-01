@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premium portfolio of a MERN Stack Developer. Specializing in scalable backend systems, cloud infrastructure, and web applications.">
+  <title>MERN Stack Developer | Portfolio</title>
+  <!-- Google Fonts for futuristic cyberpunk typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="cyber-theme">
+  <!-- Background Canvas for Three.js Particles -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Interactive Pointer Light Glow -->
+  <div id="glow-cursor" aria-hidden="true"></div>
+
+  <!-- Scanlines & Noise overlays for Cyberpunk Grid aesthetic -->
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Boot/Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader-content">
+      <div class="glitch-logo" data-text="ANTIGRAVITY_SYS">ANTIGRAVITY_SYS</div>
+      <div class="loader-terminal">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">BOOT_SEQUENCE.LOG</span>
+        </div>
+        <div class="terminal-body" id="loader-terminal-body">
+          <!-- Populated by JavaScript terminal animation -->
+        </div>
+      </div>
+      <div class="loader-progress-bar">
+        <div class="loader-progress-fill" id="loader-fill"></div>
+      </div>
+      <div class="loader-percentage" id="loader-percent">00%</div>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" id="logo-link">
+        Karmdip <span class="neon-cyan">Devmurari</span>
+      </a>
+      
+      <nav class="nav-links" id="main-navigation">
+        <a href="#about" class="nav-item active" id="nav-about-link">ABOUT</a>
+        <a href="#skills" class="nav-item" id="nav-skills-link">SKILLS</a>
+        <a href="#projects" class="nav-item" id="nav-projects-link">PROJECTS</a>
+        <a href="#experience" class="nav-item" id="nav-experience-link">HISTORY</a>
+        <a href="#contact" class="nav-item" id="nav-contact-link">CONTACT</a>
+      </nav>
+
+      <button class="menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Side Nav -->
+  <div class="mobile-nav-overlay" id="mobile-nav-panel">
+    <nav class="mobile-nav-links">
+      <a href="#about" class="mobile-nav-item" id="mob-about-link">ABOUT</a>
+      <a href="#skills" class="mobile-nav-item" id="mob-skills-link">SKILLS</a>
+      <a href="#projects" class="mobile-nav-item" id="mob-projects-link">PROJECTS</a>
+      <a href="#experience" class="mobile-nav-item" id="mob-experience-link">HISTORY</a>
+      <a href="#contact" class="mobile-nav-item" id="mob-contact-link">CONTACT</a>
+    </nav>
+  </div>
+
+  <!-- Main Scrollable Content -->
+  <main class="page-wrapper">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section scroll-reveal">
+      <div class="hero-container">
+        <div class="hero-text-content">
+          <h1 class="hero-title">
+            <span class="text-gradient-cyan">MERN Stack</span> <br>
+            <span class="text-gradient-purple">Developer</span>
+          </h1>
+          <p class="hero-subtitle">
+            Building scalable backend systems, modern web applications, cloud infrastructure, and AI-powered products.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary" id="hero-cta-projects">
+              <span class="btn-text">VIEW PROJECTS</span>
+              <span class="btn-glow"></span>
+            </a>
+            <a href="#contact" class="btn btn-secondary" id="hero-cta-contact">
+              <span class="btn-text">CONTACT ME</span>
+              <span class="btn-glow"></span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="hero-visual-content" id="hero-canvas-container">
+          <div class="hero-avatar-wrapper tilt-target">
+            <div class="avatar-glow-back" aria-hidden="true"></div>
+            <img src="/src/developer.png" alt="Karmdip Devmurari" class="hero-developer-img" id="hero-avatar">
+          </div>
+          <div class="hologram-grid-hud" aria-hidden="true">
+            <div class="hud-line angle-1"></div>
+            <div class="hud-line angle-2"></div>
+            <div class="hud-corner top-left"></div>
+            <div class="hud-corner top-right"></div>
+            <div class="hud-corner bottom-left"></div>
+            <div class="hud-corner bottom-right"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title" data-number="01"><span class="title-glow">ABOUT SYSTEM</span></h2>
+        <div class="header-line"></div>
+      </div>
+      
+      <div class="about-grid">
+        <div class="terminal-card neon-border-purple">
+          <div class="terminal-card-header">
+            <div class="terminal-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span class="terminal-filename">About Me</span>
+          </div>
+          <div class="terminal-card-body">
+            <div class="terminal-output" style="margin-bottom: 18px;">
+              <p class="summary-text">
+                Experienced Full Stack Developer specializing in backend architecture, cloud deployment, AI integrations, and modern frontend development. Skilled in scalable APIs, payment systems, GPT integrations, and production-ready applications.
+              </p>
+            </div>
+            <div class="terminal-output grid-metrics">
+              <div class="metric-item">
+                <span class="metric-label">EXPERIENCE:</span>
+                <span class="metric-val text-purple">2+ Years Production</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">SPECIALIZATION:</span>
+                <span class="metric-val text-green">Backend Architecture</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stats-container">
+          <div class="stat-card glass-card">
+            <div class="stat-num neon-text-cyan" id="stat-projects-count">6+</div>
+            <div class="stat-label">Core Deployments</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-num neon-text-purple" id="stat-uptime">100%</div>
+            <div class="stat-label">API Uptime Targets</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-num neon-text-green" id="stat-tokens">10M+</div>
+            <div class="stat-label">AI Tokens Processed</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-num neon-text-pink" id="stat-integrations">15+</div>
+            <div class="stat-label">Third-party Integrations</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title" data-number="02"><span class="title-glow">TECHNICAL SKILLS</span></h2>
+        <div class="header-line"></div>
+      </div>
+
+      <div class="skills-categories-grid">
+        <!-- Backend Card -->
+        <div class="skill-category-card glass-card tilt-target" id="skill-card-backend">
+          <div class="category-header">
+            <i data-lucide="server" class="category-icon text-cyan"></i>
+            <h3>Backend Engine</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span>Node.js</span> <div class="skill-meter"><div class="fill filled-90"></div></div></li>
+            <li><span>NestJS</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>Express.js</span> <div class="skill-meter"><div class="fill filled-95"></div></div></li>
+            <li><span>Spring Boot</span> <div class="skill-meter"><div class="fill filled-75"></div></div></li>
+            <li><span>REST APIs</span> <div class="skill-meter"><div class="fill filled-95"></div></div></li>
+            <li><span>Webhooks</span> <div class="skill-meter"><div class="fill filled-90"></div></div></li>
+          </ul>
+        </div>
+
+        <!-- Frontend Card -->
+        <div class="skill-category-card glass-card tilt-target" id="skill-card-frontend">
+          <div class="category-header">
+            <i data-lucide="layout" class="category-icon text-purple"></i>
+            <h3>Frontend Core</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span>React.js</span> <div class="skill-meter"><div class="fill filled-90"></div></div></li>
+            <li><span>Vue.js</span> <div class="skill-meter"><div class="fill filled-80"></div></div></li>
+            <li><span>Vuex</span> <div class="skill-meter"><div class="fill filled-75"></div></div></li>
+            <li><span>TypeScript</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>HTML / CSS</span> <div class="skill-meter"><div class="fill filled-95"></div></div></li>
+          </ul>
+        </div>
+
+        <!-- Databases Card -->
+        <div class="skill-category-card glass-card tilt-target" id="skill-card-databases">
+          <div class="category-header">
+            <i data-lucide="database" class="category-icon text-green"></i>
+            <h3>Databases</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span>PostgreSQL</span> <div class="skill-meter"><div class="fill filled-90"></div></div></li>
+            <li><span>MySQL</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>MongoDB</span> <div class="skill-meter"><div class="fill filled-80"></div></div></li>
+            <li><span>Redis</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>Sequelize ORM</span> <div class="skill-meter"><div class="fill filled-90"></div></div></li>
+          </ul>
+        </div>
+
+        <!-- Cloud & DevOps Card -->
+        <div class="skill-category-card glass-card tilt-target" id="skill-card-cloud">
+          <div class="category-header">
+            <i data-lucide="cloud" class="category-icon text-pink"></i>
+            <h3>Cloud &amp; DevOps</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span>AWS (EC2, S3, RDS, SES)</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>Docker</span> <div class="skill-meter"><div class="fill filled-80"></div></div></li>
+            <li><span>Nginx</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>Digital Ocean</span> <div class="skill-meter"><div class="fill filled-80"></div></div></li>
+          </ul>
+        </div>
+
+        <!-- AI & Integrations Card -->
+        <div class="skill-category-card glass-card tilt-target" id="skill-card-ai">
+          <div class="category-header">
+            <i data-lucide="cpu" class="category-icon text-cyan"></i>
+            <h3>AI &amp; Integrations</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span>GPT Models Integration</span> <div class="skill-meter"><div class="fill filled-95"></div></div></li>
+            <li><span>Stable Diffusion API</span> <div class="skill-meter"><div class="fill filled-85"></div></div></li>
+            <li><span>RevenueCat Payments</span> <div class="skill-meter"><div class="fill filled-90"></div></div></li>
+            <li><span>Payment Gateways (Stripe/Paypal)</span> <div class="skill-meter"><div class="fill filled-95"></div></div></li>
+          </ul>
+        </div>
+
+        <!-- Tools Card -->
+        <div class="skill-category-card glass-card tilt-target" id="skill-card-tools">
+          <div class="category-header">
+            <i data-lucide="terminal" class="category-icon text-purple"></i>
+            <h3>Tools &amp; Libraries</h3>
+          </div>
+          <div class="tools-tags-container">
+            <span class="tool-tag">Postman</span>
+            <span class="tool-tag">GitHub Desktop</span>
+            <span class="tool-tag">VS Code</span>
+            <span class="tool-tag">DBeaver</span>
+            <span class="tool-tag">Git Bash</span>
+            <span class="tool-tag">Windsurf</span>
+            <span class="tool-tag">Putty</span>
+            <span class="tool-tag">FileZilla</span>
+            <span class="tool-tag">GitHub Copilot</span>
+            <span class="tool-tag">ChatGPT</span>
+            <span class="tool-tag">Grok</span>
+            <span class="tool-tag">Lodash</span>
+            <span class="tool-tag">Papaparse</span>
+            <span class="tool-tag">Class Management Patterns</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title" data-number="03"><span class="title-glow">CORE DEPLOYMENTS</span></h2>
+        <div class="header-line"></div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card glass-card tilt-target" id="project-1">
+          <div class="project-img-placeholder text-gradient-cyan">
+            <span>[REPORT_DATA_PLATFORM]</span>
+            <div class="project-matrix-overlay"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Data Management Platform</h3>
+            <p class="project-desc">
+              Enterprise report generation platform serving multiple industries. Built complex enrichment forms with dynamic validations and comprehensive audit trails.
+            </p>
+            <div class="project-features">
+              <span><i data-lucide="check-circle-2"></i> Granular access control list</span>
+              <span><i data-lucide="check-circle-2"></i> Caching &amp; query optimization</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">Vue.js</span>
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">Lodash</span>
+              <span class="tech-badge">Vuex</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card glass-card tilt-target" id="project-2">
+          <div class="project-img-placeholder text-gradient-purple">
+            <span>[MUSEMIND_AI_PORTAL]</span>
+            <div class="project-matrix-overlay"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">MuseMind - AI Platform</h3>
+            <p class="project-desc">
+              AI content platform featuring NestJS architecture, coin-based transactions, OpenAI/Stable Diffusion pipelines, and async queue rendering.
+            </p>
+            <div class="project-features">
+              <span><i data-lucide="check-circle-2"></i> Stable Diffusion rendering queue</span>
+              <span><i data-lucide="check-circle-2"></i> RevenueCat subscription engine</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-badge">NestJS</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">GPT Models</span>
+              <span class="tech-badge">RevenueCat</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card glass-card tilt-target" id="project-3">
+          <div class="project-img-placeholder text-gradient-green">
+            <span>[WHATSAPP_AI_BOT]</span>
+            <div class="project-matrix-overlay"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">WhatsApp AI Chatbot</h3>
+            <p class="project-desc">
+              Webhooks messaging node connecting WhatsApp Business API to Python AI services with logging schema tracking.
+            </p>
+            <div class="project-features">
+              <span><i data-lucide="check-circle-2"></i> Real-time message webhooks</span>
+              <span><i data-lucide="check-circle-2"></i> Session analytics logging</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-badge">NestJS</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">WhatsApp API</span>
+              <span class="tech-badge">Python</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card glass-card tilt-target" id="project-4">
+          <div class="project-img-placeholder text-gradient-pink">
+            <span>[FIGMA_AI_PALETTE]</span>
+            <div class="project-matrix-overlay"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">AI Color Figma Plugin</h3>
+            <p class="project-desc">
+              Automated color scheme suggestions plugin with frames extraction and MongoDB analytics logs.
+            </p>
+            <div class="project-features">
+              <span><i data-lucide="check-circle-2"></i> Figma frame color extractor</span>
+              <span><i data-lucide="check-circle-2"></i> Python AI recommendation node</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-badge">TypeScript</span>
+              <span class="tech-badge">MongoDB</span>
+              <span class="tech-badge">Figma API</span>
+              <span class="tech-badge">Python</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project-card glass-card tilt-target" id="project-5">
+          <div class="project-img-placeholder text-gradient-cyan">
+            <span>[DATA_TAGGING_TOOL]</span>
+            <div class="project-matrix-overlay"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Data Extraction Tool</h3>
+            <p class="project-desc">
+              Document upload engine extracting KPIs into dashboard databases using queue channels and S3 bucket storage.
+            </p>
+            <div class="project-features">
+              <span><i data-lucide="check-circle-2"></i> AWS S3 document pipelines</span>
+              <span><i data-lucide="check-circle-2"></i> Python ML extraction queue</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">React.js</span>
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">AWS S3</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Project 6 -->
+        <article class="project-card glass-card tilt-target" id="project-6">
+          <div class="project-img-placeholder text-gradient-purple">
+            <span>[SCHOOL_SUBSCRIPTION]</span>
+            <div class="project-matrix-overlay"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">School Subscription Manager</h3>
+            <p class="project-desc">
+              REST APIs for educational structures with multi-role access control (Teachers/Students/Parents/Admin) and transaction processing.
+            </p>
+            <div class="project-features">
+              <span><i data-lucide="check-circle-2"></i> Sequelize DB skeleton migration</span>
+              <span><i data-lucide="check-circle-2"></i> Payment gateway integration</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">Digital Ocean</span>
+              <span class="tech-badge">Sequelize</span>
+            </div>
+
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title" data-number="04"><span class="title-glow">PROFESSIONAL HISTORY</span></h2>
+        <div class="header-line"></div>
+      </div>
+
+      <!-- Award Highlight Card -->
+      <div class="award-glow-card glass-card scroll-reveal" style="margin-bottom: 50px; background: linear-gradient(135deg, rgba(0, 240, 255, 0.04) 0%, rgba(189, 0, 255, 0.04) 100%); border-color: rgba(0, 240, 255, 0.25);">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div class="award-icon-container" style="font-size: 2.2rem; filter: drop-shadow(0 0 10px var(--neon-cyan));">🏆</div>
+          <div>
+            <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 4px; font-family: var(--font-cyber); letter-spacing: 1px;">Developer of the Year Award 2024</h3>
+            <p style="font-size: 0.85rem; color: var(--neon-cyan); font-family: var(--font-mono); letter-spacing: 1px;">HONORED BY APPUNIK</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Experience Item 1 -->
+        <div class="timeline-item scroll-reveal">
+          <div class="timeline-marker">
+            <div class="marker-dot neon-bg-cyan"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date neon-text-cyan">AUG 2022 - PRESENT</span>
+            <h3 class="timeline-role">Junior Software Engineer - Backend Developer</h3>
+            <h4 class="timeline-company">AppUnik, Ahmedabad</h4>
+            <p class="timeline-desc">
+              Developed and maintained core backend microservices and databases, building production-ready apps with zero-downtime infrastructure migrations.
+            </p>
+            <ul class="timeline-achievements">
+              <li>Developed and maintained backend services using Node.js, NestJS, and Express.js for production applications.</li>
+              <li>Designed and implemented RESTful APIs with robust CRUD operations, authentication, and role-based access control.</li>
+              <li>Optimized complex MySQL, PostgreSQL, and MongoDB queries to maximize backend transaction speeds.</li>
+              <li>Deployed applications on AWS (EC2, S3, SES, RDS) and managed infrastructure stacks using Docker and Nginx.</li>
+              <li>Integrated third-party services: payment gateways, GPT models, Stable Diffusion API, and RevenueCat.</li>
+              <li>Created Sequelize migration scripts, managed schema versioning, and migrated Windows to Linux servers with zero downtime.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Experience Item 2 -->
+        <div class="timeline-item scroll-reveal">
+          <div class="timeline-marker">
+            <div class="marker-dot neon-bg-purple"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date neon-text-purple">PART-TIME (4 MONTHS)</span>
+            <h3 class="timeline-role">Spring Boot Intern</h3>
+            <h4 class="timeline-company">Remote Internship</h4>
+            <p class="timeline-desc">
+              Gained foundational knowledge in enterprise Java architectures, database mapping systems, and class management design patterns.
+            </p>
+            <ul class="timeline-achievements">
+              <li>Built backend REST APIs utilizing Java and the Spring Boot framework.</li>
+              <li>Studied and implemented MongoDB database operations and REST configurations.</li>
+              <li>Studied and implemented class management patterns and system design principles.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title" data-number="05"><span class="title-glow">CONTACT</span></h2>
+        <div class="header-line"></div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-panel">
+          <div class="contact-methods">
+            <div class="method-row">
+              <i data-lucide="mail" class="method-icon text-cyan"></i>
+              <div class="method-details">
+                <span class="method-label">Email:</span>
+                <a href="mailto:karmdip.dev@gmail.com" class="method-val hover-neon-cyan" id="email-link">karmdip.dev@gmail.com</a>
+              </div>
+            </div>
+            <div class="method-row">
+              <i data-lucide="phone" class="method-icon text-purple"></i>
+              <div class="method-details">
+                <span class="method-label">Mobile:</span>
+                <a href="tel:9924736680" class="method-val hover-neon-cyan" id="phone-link">9924736680</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links-container">
+            <a href="https://github.com/INF-KD" target="_blank" rel="noopener" class="social-btn neon-border-cyan" aria-label="GitHub Profile">
+              <i data-lucide="github"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn neon-border-purple" aria-label="LinkedIn Profile">
+              <i data-lucide="linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-card glass-card">
+          <form id="cyberpunk-contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="client-name" class="form-input" placeholder="Your Name" required>
+                <span class="error-msg" id="name-error-msg">REQUIRED_FIELD_MISSING</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="email" id="client-email" class="form-input" placeholder="Your Email" required>
+                <span class="error-msg" id="email-error-msg">INVALID_EMAIL_ADDRESS</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <textarea id="client-msg" class="form-input text-area" placeholder="Tell me about your app idea..." required></textarea>
+                <span class="error-msg" id="msg-error-msg">EMPTY_PAYLOAD_UNACCEPTABLE</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit-btn" id="submit-btn">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-glow"></span>
+            </button>
+          </form>
+
+          <div class="terminal-response-console" id="form-terminal-console" aria-live="polite">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-grid-bg" aria-hidden="true"></div>
+    <div class="footer-content">
+      <div class="footer-col">
+        <span class="footer-brand">Karmdip Devmurari</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Loader Script & App Module -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
