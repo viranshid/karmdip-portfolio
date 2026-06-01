@@ -23,7 +23,6 @@ createIcons({
 document.addEventListener('DOMContentLoaded', () => {
   initBackgroundParticles();
   // initHeroHologram();
-  initTerminalLoader();
   initMouseGlow();
   initCardEffects();
   initScrollAnimations();
@@ -31,75 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initAvatarTransparency();
 });
-
-/* ==========================================================================
-   1. Terminal Loading Sequence
-   ========================================================================== */
-function initTerminalLoader() {
-  const loader = document.getElementById('loader');
-  const terminalBody = document.getElementById('loader-terminal-body');
-  const progressBar = document.getElementById('loader-fill');
-  const percentText = document.getElementById('loader-percent');
-
-  if (!loader || !terminalBody) return;
-
-  const logs = [
-    'Initializing Antigravity Neural OS...',
-    'Loading core WebGL graphics kernels...',
-    'Establishing secure sockets handshake...',
-    'Allocating database buffers: PostgreSQL, MongoDB, Redis...',
-    'Loading AI models: GPT-4, Stable Diffusion v2.1...',
-    'Mounting cloud nodes EC2, S3, RDS...',
-    'Verifying sandbox routing configuration...',
-    'Loading Full-Stack portfolio workspace...',
-    'System ready. Access granted.'
-  ];
-
-  let logIndex = 0;
-  let progress = 0;
-
-  // Add lines step-by-step
-  function addLogLine() {
-    if (logIndex < logs.length) {
-      const line = document.createElement('div');
-      line.className = 'terminal-line';
-      line.textContent = `> ${logs[logIndex]}`;
-      terminalBody.appendChild(line);
-      terminalBody.scrollTop = terminalBody.scrollHeight;
-      logIndex++;
-
-      // Schedule next log
-      setTimeout(addLogLine, 200 + Math.random() * 200);
-    }
-  }
-
-  // Update progress bar
-  function updateProgress() {
-    if (progress < 100) {
-      progress += Math.floor(Math.random() * 8) + 1;
-      if (progress > 100) progress = 100;
-
-      progressBar.style.width = `${progress}%`;
-      percentText.textContent = `${String(progress).padStart(3, '0')}%`;
-
-      if (progress < 100) {
-        setTimeout(updateProgress, 80);
-      } else {
-        // Finished loading, slide loader out of view
-        setTimeout(() => {
-          loader.classList.add('fade-out');
-          setTimeout(() => {
-            loader.remove();
-          }, 800);
-        }, 500);
-      }
-    }
-  }
-
-  // Run both processes
-  addLogLine();
-  updateProgress();
-}
 
 /* ==========================================================================
    2. Interactive Pointer Light Glow
